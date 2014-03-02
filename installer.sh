@@ -16,7 +16,7 @@ cp -R wordpress /var/www
 chown -R www-data /var/www/wordpress
 
 touch $OUT/"40-Turning on MySQL."
-sudo service mysql start
+service mysql start
 
 touch $OUT/"50-Log in to mysql server as root user."
 mysql -u root -p
