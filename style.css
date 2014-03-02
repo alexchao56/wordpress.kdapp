@@ -1,0 +1,112 @@
+
+.WordPress-installer {
+  padding: 0 10px 10px;
+  width: 600px;
+  height: auto;
+  background-color: rgba(255,255,255,0.9);
+  border-radius: 3px;
+  left:50%;
+  margin-left:-300px;
+  margin-top:80px;
+}
+
+.WordPress-installer .toggle-button {
+  position: absolute;
+  top: 200px;
+  right: 12px;
+  z-index: 4;
+}
+
+.WordPress-installer .logo {
+  width:200px;
+  left:50%;
+  position:relative;
+  margin-left:-110px;
+  margin-top:10px;
+}
+
+.WordPress-installer .terminal {
+  background:#333;
+  height:0;
+  max-height:400px;
+
+  -webkit-transition: height .3s ease-in;
+  -moz-transition: height .3s ease-in;
+  -o-transition: height .3s ease-in;
+  transition: height .3s ease-in;
+}
+
+.WordPress-installer .terminal.in {
+  height:400px;
+}
+
+.WordPress-installer .main-button {
+  margin:15px;
+  left:50%;
+  width:250px;
+  margin-left:-125px;
+}
+
+.WordPress-installer .main-button.loading > .button-title {
+  visibility: hidden;
+}
+
+.WordPress-installer .progressbar-container {
+  margin:10px 0 0 0;
+  height:30px;
+  border:none;
+  border-radius:0;
+}
+
+.WordPress-installer .progressbar-container .bar {
+  background:#1AAF5D;
+  border-radius:0;
+}
+
+.WordPress-installer .progressbar-container > .dark-label
+{
+  font-size:14px;
+  top:8px;
+  left:8px;
+  text-align:left;
+}
+
+.WordPress-installer .WordPress-help {
+  margin-top: -5px;
+  font-size: 14px;
+  line-height: 1.7;
+  color:#555;
+}
+
+.WordPress-installer .WordPress-help p{
+  padding: 0 0 20px;
+}
+
+.WordPress-installer .WordPress-help a {
+  text-decoration: none;
+  color: #298E1C;
+}
+
+.WordPress-installer .bar > .light-label
+{
+  font-size:14px;
+  top:8px;
+  left:8px;
+  text-align:left;
+  text-decoration:none;
+}
+
+.WordPress-installer .running-link {
+  text-align: center;
+  padding: 15px 0;
+  border-bottom: 1px solid #ddd;
+  border-top: 1px solid #ddd;
+  background: #eee;
+  margin-bottom: 15px;
+}
+
+.WordPress-installer .running-link a {
+  text-decoration:none;
+  color: #1AAF5D;
+  text-shadow:none;
+}

@@ -1,0 +1,26 @@
+{
+  "version": "0.1",
+  "name": "WordPress",
+  "identifier": "com.koding.alexchao56.apps.WordPress",
+  "authorNick": "Chao",
+  "homepage": "alecxhao56.kd.io/apps/WordPress.kdapp",
+  "author": "Alex Chao",
+  "repository": "git://github.com/alexchao56/wordpress.kdapp.git",
+  "description": "WordPress : WordPress is an open source code editor for web designers and front-end developers.",
+  "category": "web-app",
+  "source": {
+    "blocks": {
+      "app": {
+        "files": [
+          "./index.coffee"
+        ]
+      }
+    },
+    "stylesheets": [
+      "./style.css"
+    ]
+  },
+  "options": {
+    "type": "tab"
+  }
+}
