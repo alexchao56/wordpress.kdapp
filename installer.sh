@@ -6,7 +6,7 @@ OUT="/tmp/_wordpressinstaller.out"
 mkdir -p $OUT
 
 touch $OUT/"0-Asking for sudo password"
-sudo -i
+sudo
 
 touch $OUT/"10-Getting WordPress"
 wget -O wordpress.tar.gz http://wordpress.org/latest.tar.gz
@@ -16,7 +16,7 @@ cp -R wordpress /var/www
 chown -R www-data /var/www/wordpress
 
 touch $OUT/"40-Turning on MySQL."
-service mysql start
+sudo service mysql start
 
 touch $OUT/"50-Log in to mysql server as root user."
 mysql -u root -p
@@ -36,5 +36,4 @@ GRANT ALL PRIVILEGES ON dbwordpress.* TO wordpressuser@localhost IDENTIFIED BY â
 touch $OUT/"95 - Flushing Priviliges"
 FLUSH PRIVILEGES;
 
-touch $OUT/"100-WordPress installation completed. Going to locahost/wordpress to go through WordPress's setup"
-localhost/django
+touch $OUT/"100-WordPress installation completed."
