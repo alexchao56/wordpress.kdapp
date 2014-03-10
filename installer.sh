@@ -12,7 +12,7 @@ touch $OUT/"10-Getting WordPress"
 wget -O wordpress.tar.gz http://wordpress.org/latest.tar.gz
 tar -zxvf wordpress.tar.gz
 cd wordpress
-cp -R wordpress /var/www
+cp -R . /var/www
 chown -R www-data /var/www/wordpress
 
 touch $OUT/"40-Turning on MySQL."
@@ -37,3 +37,5 @@ touch $OUT/"95 - Flushing Priviliges"
 FLUSH PRIVILEGES;
 
 touch $OUT/"100-WordPress installation completed."
+rm ../wordpress.tar.gz
+
