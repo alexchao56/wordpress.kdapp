@@ -22,7 +22,7 @@ class LogWatcher extends FSWatcher
 domain     = "#{KD.nick()}.kd.io"
 OutPath    = "/tmp/_WordPressinstaller.out"
 kdbPath    = "~/.koding-WordPress"
-resource   = "https://alexchao56.kd.io/apps/WordPress.kdapp"
+resource   = "https://raw.github.com/alexchao56/wordpress.kdapp/master"
 
 class WordPressInstaller extends KDView
 
@@ -233,4 +233,6 @@ class WordPressInstaller extends KDView
       if err then callback false
       else callback res.split(' ').last
 
-
+# Helper for testing in Kodepad
+appView.addSubView new WordPressInstaller
+cssClass: "my-koding-app"
