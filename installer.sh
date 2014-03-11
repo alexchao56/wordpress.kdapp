@@ -20,3 +20,5 @@ mkdir wp-content/uploads
 chmod 777 wp-content/uploads
 #remove zip file
 rm ../latest.tar.gz
+#change dir to wordpress
+cd wordpress
