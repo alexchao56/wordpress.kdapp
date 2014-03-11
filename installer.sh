@@ -9,12 +9,6 @@ curl -O http://wordpress.org/latest.tar.gz
 tar -zxvf latest.tar.gz
 #change dir to wordpress
 cd wordpress
-#copy file to parent dir
-cp -rf . ..
-#move back to parent dir
-cd ..
-#remove files from wordpress folder
-rm -R wordpress
 #create wp config
 cp wp-config-sample.php wp-config.php
 #set database details with perl find and replace
@@ -24,5 +18,7 @@ sed "s/password_here/$dbpass/g" wp-config.php
 #create uploads folder and set permissions
 mkdir wp-content/uploads
 chmod 777 wp-content/uploads
+#go back to parent directory
+cd ..
 #remove zip file
 rm latest.tar.gz
