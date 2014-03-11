@@ -1,41 +1,28 @@
-#!/bin/bash
+#/bin/bash
+dbname="dbwordpress"
+dbuser="wordpressuser"
+dbpass="wppassword"
 
-echo "Welcome to WordPress Installer for Koding!"
-
-OUT="/tmp/_wordpressinstaller.out"
-mkdir -p $OUT
-
-touch $OUT/"0-Asking for sudo password"
-sudo
-
-touch $OUT/"10-Getting WordPress"
-wget -O wordpress.tar.gz http://wordpress.org/latest.tar.gz
-tar -zxvf wordpress.tar.gz
+#download wordpress
+curl -O http://wordpress.org/latest.tar.gz
+#unzip wordpress
+tar -zxvf latest.tar.gz
+#change dir to wordpress
 cd wordpress
-cp -R . /var/www
-chown -R www-data /var/www/wordpress
-
-touch $OUT/"40-Turning on MySQL."
-sudo service mysql start
-
-touch $OUT/"50-Log in to mysql server as root user."
-mysql -u root -p
-
-touch $OUT/"60-Create database with name dbwordpress."
-CREATE DATABASE dbwordpress;
-
-touch $OUT/"70-Create a new user of username wordpressuser."
-CREATE USER wordpressuser;
-
-touch $OUT/"85-Create password 'wppassword' for user wordpressuser."
-SET PASSWORD FOR wordpressuser = PASSWORD("wppassword");
-
-touch $OUT/"90-Grant user wordpressuser all permissions on the database."
-GRANT ALL PRIVILEGES ON dbwordpress.* TO wordpressuser@localhost IDENTIFIED BY ‘wppassword’;
-
-touch $OUT/"95 - Flushing Priviliges"
-FLUSH PRIVILEGES;
-
-touch $OUT/"100-WordPress installation completed."
-rm ../wordpress.tar.gz
-
+#copy file to parent dir
+cp -rf . ..
+#move back to parent dir
+cd ..
+#remove files from wordpress folder
+rm -R wordpress
+#create wp config
+cp wp-config-sample.php wp-config.php
+#set database details with perl find and replace
+sed -e "s/database_name_here/$dbname/g" wp-config.php
+sed -e "s/username_here/$dbuser/g" wp-config.php
+sed "s/password_here/$dbpass/g" wp-config.php
+#create uploads folder and set permissions
+mkdir wp-content/uploads
+chmod 777 wp-content/uploads
+#remove zip file
+rm latest.tar.gz
