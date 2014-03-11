@@ -227,8 +227,10 @@ class WordPressInstaller extends KDView
       @watcher.watch()
       @terminal.runCommand "curl --silent #{resource}/installer.sh | bash -s #{session}"
 
-  isBracketsRunning:(callback)->
+  isWordpressRunning:(callback)->
     vmc = KD.getSingleton 'vmController'
     vmc.run "pgrep -f '.koding-WordPress/WordPress.js' -l -u #{KD.nick()}", (err, res)->
       if err then callback false
       else callback res.split(' ').last
+
+      
