@@ -18,7 +18,5 @@ sed "s/password_here/$dbpass/g" wp-config.php
 #create uploads folder and set permissions
 mkdir wp-content/uploads
 chmod 777 wp-content/uploads
-#go back to parent directory
-cd ..
 #remove zip file
-rm latest.tar.gz
+rm ../latest.tar.gz
