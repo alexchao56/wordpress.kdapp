@@ -25,9 +25,9 @@ cp wp-config-sample.php wp-config.php
 
 #set database details with perl find and replace
 touch $OUT/"60-Setting up database profiles"
-sed -e "s/database_name_here/$dbname/g" wp-config.php
-sed -e "s/username_here/$dbuser/g" wp-config.php
-sed "s/password_here/$dbpass/g" wp-config.php
+sed -i -e "s/database_name_here/$dbname/g" wp-config.php
+sed -i -e "s/username_here/$dbuser/g" wp-config.php
+sed -i -e "s/password_here/$dbpass/g" wp-config.php
 
 touch $OUT/"90-Creating uploads folder and setting permissions"
 #create uploads folder and set permissions
