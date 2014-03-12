@@ -33,8 +33,9 @@ touch $OUT/"90-Creating uploads folder and setting permissions"
 mkdir wp-content/uploads
 chmod 777 wp-content/uploads
 
-touch $OUT/"100-Finished installing Wordpres"
+touch $OUT/"95-Removing Zip File"
 #remove zip file
 rm ../latest.tar.gz
 
+touch $OUT/"100-Installation completed"
 
