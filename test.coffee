@@ -21,7 +21,8 @@ class LogWatcher extends FSWatcher
 
 domain     = "#{KD.nick()}.kd.io"
 OutPath    = "/tmp/_WordPressinstaller.out"
-kdbPath    = "~/.koding-WordPress"
+#kdbPath    = "~/.koding-WordPress"
+searchPath = "~/Web/wordpress"
 resource   = "https://raw.github.com/alexchao56/wordpress.kdapp/master"
 
 class WordPressInstaller extends KDView
@@ -83,7 +84,7 @@ class WordPressInstaller extends KDView
         cssClass : 'hidden running-link'
         
       @link.setSession = (session)->
-        @updatePartial "Click here to launch WordPress: <a target='_blank' href='http://#{domain}:3000/WordPress/#{session}'>http://#{domain}:3000/WordPress/#{session}</a>"
+        @updatePartial "Click here to launch WordPress: <a target='_blank' href='http://#{domain}/wordpress/index.php'>http://#{domain}/wordpress/index.php</a>"
         @show()
 
       @addSubView @content = new KDCustomHTMLView
@@ -134,10 +135,13 @@ class WordPressInstaller extends KDView
 
     @button.showLoader()
 
-    FSHelper.exists "~/wordpress/wp.config.php", vmc.defaultVmName, (err, WordPress)=>
+    FSHelper.exists "#{searchPath}/wp-config.php", vmc.defaultVmName, (err, WordPress)=>
       warn err if err
       
       unless WordPress
+        console.log("checking wordpress");
+        debugger;
+      
         @link.hide()
         @progress.updateBar 100, '%', "WordPress is not installed."
         @switchState 'install'
@@ -198,9 +202,10 @@ class WordPressInstaller extends KDView
     KD.utils.wait 3000, => @checkState()
 
   runCallback:->
+    console.log("runCallback")
     @_lastRequest = 'run'
     session = (Math.random() + 1).toString(36).substring 7
-    @terminal.runCommand "node #{kdbPath}/WordPress.js #{session} &"
+    #@terminal.runCommand "node #{kdbPath}/WordPress.js #{session} &"
     KD.utils.wait 3000, => @checkState()
 
   installCallback:->
@@ -229,13 +234,17 @@ class WordPressInstaller extends KDView
 
   isWordPressRunning:(callback)->
     vmc = KD.getSingleton 'vmController'
-    vmc.run "pgrep -f '.koding-WordPress/WordPress.js' -l -u #{KD.nick()}", (err, res)->
+    #vmc.run "curl ", (err, res)->
+      #if err then callback false
+      #else callback res.split(' ').last
+    FSHelper.exists "#{searchPath}/index.php", vmc.defaultVmName, (err, WordPress)->
       if err then callback false
-      else callback res.split(' ').last
+      callback WordPress
+      
 
 # Helper for testing in Kodepad
 appView.addSubView new WordPressInstaller
 cssClass: ".WordPress-installer"
 
 
-#do a curl request on the port 
+#do a curl request on the port to see if wordpress is running 
