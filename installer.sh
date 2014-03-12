@@ -8,6 +8,7 @@ mkdir -p $OUT
 
 #download wordpress
 touch $OUT/"0-Downloading Wordpress"
+cd Web
 curl -O http://wordpress.org/latest.tar.gz
 
 #unzip wordpress
