@@ -134,7 +134,7 @@ class WordPressInstaller extends KDView
 
     @button.showLoader()
 
-    FSHelper.exists "~/.koding-WordPress/WordPress.js", vmc.defaultVmName, (err, WordPress)=>
+    FSHelper.exists "~/wordpress/wp.config.php", vmc.defaultVmName, (err, WordPress)=>
       warn err if err
       
       unless WordPress
@@ -143,7 +143,7 @@ class WordPressInstaller extends KDView
         @switchState 'install'
       else
         @progress.updateBar 100, '%', "Checking for running instances..."
-        @isBracketsRunning (session)=>
+        @isWordPressRunning (session)=>
           if session
             message = "WordPress is running."
             @link.setSession session
@@ -227,7 +227,7 @@ class WordPressInstaller extends KDView
       @watcher.watch()
       @terminal.runCommand "curl --silent #{resource}/installer.sh | bash -s #{session}"
 
-  isWordpressRunning:(callback)->
+  isWordPressRunning:(callback)->
     vmc = KD.getSingleton 'vmController'
     vmc.run "pgrep -f '.koding-WordPress/WordPress.js' -l -u #{KD.nick()}", (err, res)->
       if err then callback false
@@ -235,4 +235,7 @@ class WordPressInstaller extends KDView
 
 # Helper for testing in Kodepad
 appView.addSubView new WordPressInstaller
-cssClass: "my-koding-app"
+cssClass: ".WordPress-installer"
+
+
+#do a curl request on the port 
